@@ -132,8 +132,10 @@ public class ExtendedSpawnerLogic extends MobSpawnerBaseLogic {
 		for (int i = 0; i < spawnCount; i++) {
 			Entity entity = getEntityToSpawn(world);
 
-			if (entity == null)
+			if (entity == null) {
+				resetDelay();
 				return;
+			}
 
 			int entityCount = world.getEntitiesWithinAABB(entity.getClass(), AxisAlignedBB.getBoundingBox(getSpawnerX(), getSpawnerY(), getSpawnerZ(), getSpawnerX() + 1, getSpawnerY() + 1, getSpawnerZ() + 1).expand(spawnRange * 2, 4.0D, spawnRange * 2)).size();
 			if (entityCount >= maxNearbyEntities) {
